@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+use App\Models\User;
+
 class ProfileController extends Controller
 {
     /**
@@ -26,13 +28,26 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $id = Auth::id();
+
+        $data = User::find($id);
+        $data->name = $request->name;
+        $data->username = $request->username;
+        $data->email = $request->email;
+        $data->address = $request->address;
+        $data->phone = $request->phone;
+
+        if($request->file('photo')){
+
+            $file = $request->file('photo');
+            @unlink(public_path().'/storage/upload/admin_images/'.$data->photo);
+            $filename = date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path().'/storage/upload/admin_images/', $filename);
+            $data['photo'] = $filename;
         }
 
-        $request->user()->save();
+       $data->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
