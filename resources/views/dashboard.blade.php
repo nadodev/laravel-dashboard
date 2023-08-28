@@ -43,10 +43,13 @@
                     </div>
                     <div class="post-inner">
                         <div class="post">
-                            <figure class="post-thumb"><a href="blog-details.html">
-                                <img id="showImage"  src="{{ (!empty($userData->photo)) ? Storage::url('upload/user_images/'.$userData->photo) : Storage::url('upload/no_image.jpg') }}" alt="" style="width: 100px; height: 100px;"></a>
-                                <h5><a href="blog-details.html">{{ $userData->name }} </a></h5>
-         <p>{{ $userData->email }} </p>
+                            <figure class="post-thumb">
+                                <a href="blog-details.html">
+                                    <img src="{{ (!empty($userData->photo)) ? Storage::url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg') }}" alt="">
+                                </a>
+                            </figure>
+                            <h5><a href="blog-details.html">{{ $userData->name }} </a></h5>
+                            <p>{{ $userData->email }} </p>
                         </div>
                     </div>
                 </div>
