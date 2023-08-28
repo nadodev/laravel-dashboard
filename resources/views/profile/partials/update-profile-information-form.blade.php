@@ -3,7 +3,7 @@
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -40,7 +40,32 @@
                 </div>
             @endif
         </div>
+         <div class="mb-2 w-full">
+            <div>
+                <x-input-label for="photo" :value="__('Endereço')" />
+            </div>
+            <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" :value="old('address', $user->address)" required autofocus autocomplete="address" />
+            <x-input-error class="mt-2" :messages="$errors->get('address')" />
+        </div>
+        <div class="mb-2 w-full">
+            <div>
+                <x-input-label for="photo" :value="__('Foto')" />
+            </div>
+            <x-text-input id="photo" name="photo" type="file" class="mt-1 block w-full" :value="old('photo', $user->photo)"/>
+            <x-input-error class="mt-2" :messages="$errors->get('photo')" />
+        </div>
 
+        <div class="mb-2 w-full" >
+            <img id="preview" class="rounded-full" src="{{ (!empty($user->photo)) ? '/storage/upload/admin_images/' . $user->photo : '/storage/upload/no-image.png' }}" alt="teste" width="200">
+        </div>
+
+        <div class="mb-2 w-full">
+            <div>
+                <x-input-label for="photo" :value="__('Telefone')" />
+            </div>
+            <x-text-input id="photo" name="phone" type="text" class="mt-1 block w-full" :value="old('photo', $user->phone)" required autofocus autocomplete="phone" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+        </div>
         <div class="flex items-center gap-4 mt-4">
             <x-primary-button class="bg-zinc-500">{{ __('Save') }}</x-primary-button>
 
@@ -56,3 +81,19 @@
         </div>
     </form>
 </section>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+    var photoInput = document.getElementById('photo');
+    var previewImg = document.getElementById('preview');
+
+    photoInput.addEventListener('change', function(e) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            previewImg.src = e.target.result;
+        };
+        reader.readAsDataURL(this.files[0]);
+    });
+});
+
+</script>

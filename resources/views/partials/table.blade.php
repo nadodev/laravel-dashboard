@@ -1,3 +1,8 @@
+<?php
+use Carbon\Carbon;
+Carbon::setLocale('pt_BR');
+?>
+
 <div class="table-responsive">
     <table class="table border mb-0">
       <thead class="table-light fw-semibold">
@@ -28,7 +33,12 @@
               </td>
             @if ($user->logins->count() > 0)
                 <td>
-                    <div class="fw-semibold">{{ $user->logins->last()->login_at }}</div>
+                    <div class="fw-semibold">
+                        {{
+                        \Carbon\Carbon::parse($user->logins->last()->login_at)->format('d/m/Y H:i:s')
+
+                         }}
+                    </div>
                 </td>
             @else
                 <td>
