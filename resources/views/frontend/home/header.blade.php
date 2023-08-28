@@ -18,7 +18,19 @@
                     <li><a href="index.html"><i class="fab fa-vimeo-v"></i></a></li>
                 </ul>
                 <div class="sign-box">
+
+                    @auth
+
+                    <form action="{{ route('profile.user.destroy') }}" method="POST">
+                        @csrf
+                        <li> <a :href="#"
+                            onclick="event.preventDefault(); this.closest('form').submit();" style="cursor: pointer"><i class="fa fa-key" aria-hidden="true"></i> Sair </a></li>
+                    </form>
+
+                    @else
                     <a href="/login"><i class="fas fa-user"></i>Sign In</a>
+
+                    @endauth
                 </div>
             </div>
         </div>
