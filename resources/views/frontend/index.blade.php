@@ -12,7 +12,7 @@
 
 
 <!-- category-section -->
-  @include('frontend.home.category')
+  @include('frontend.home.category', ['categories' => $propertyTypes])
 <!-- category-section end -->
 
 

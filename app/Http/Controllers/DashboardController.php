@@ -17,6 +17,6 @@ class DashboardController extends Controller
     {
 
         $users = User::with('logins')->get(); // Carrega os registros de login relacionados
-        return view('admin.listar-usuarios', compact('users'));
+        return view('backend.users.allUsers', compact('users'));
     }
 }

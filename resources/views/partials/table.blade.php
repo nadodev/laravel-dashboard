@@ -2,7 +2,6 @@
 use Carbon\Carbon;
 Carbon::setLocale('pt_BR');
 ?>
-
 <div class="table-responsive">
     <table class="table border mb-0">
       <thead class="table-light fw-semibold">
@@ -55,7 +54,6 @@ Carbon::setLocale('pt_BR');
                 <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Info</a><a class="dropdown-item" href="#">Edit</a><a class="dropdown-item text-danger" href="#">Delete</a></div>
               </div>
             </td>
-
         @endforeach
       </tbody>
     </table>

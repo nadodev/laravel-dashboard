@@ -15,7 +15,7 @@
         @csrf
         <li> <a :href="#"
             onclick="event.preventDefault();
-                        this.closest('form').submit();" style="cursor: pointer"><i class="fa fa-key" aria-hidden="true"></i> Security </a></li>
+                        this.closest('form').submit();" style="cursor: pointer"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair </a></li>
     </form>
 
     </ul>
